@@ -1,0 +1,22 @@
+# SOC-Sentinel keeps dependencies intentionally lean for Day 1.
+# The phishing parser uses Python's standard library for .eml parsing,
+# headers, regexes, and URL extraction wherever possible.
+
+# FastAPI powers the API layer for scans, log ingestion, incidents, and response endpoints.
+fastapi==0.116.1
+
+# Uvicorn runs the FastAPI app locally and in lightweight deployments.
+uvicorn[standard]==0.35.0
+
+# Pydantic defines validated alert, incident, scan, and API response schemas.
+pydantic==2.11.7
+
+# Beautiful Soup parses HTML email bodies so the phishing engine can inspect visible text and links.
+beautifulsoup4==4.13.4
+
+# tldextract normalizes domains and separates subdomain/domain/suffix for link reputation heuristics.
+tldextract==5.3.0
+
+# python-dotenv loads local API keys and environment settings without hardcoding secrets.
+python-dotenv==1.1.1
+

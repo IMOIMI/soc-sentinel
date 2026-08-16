@@ -1,0 +1,24 @@
+From: Learning Portal <training@company.example>
+To: SOC Cohort <soc-cohort@company.example>
+Subject: Security training schedule for this week
+Date: Thu, 06 Aug 2026 08:45:00 +0000
+Message-ID: <training-week-004@company.example>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Authentication-Results: company.example; spf=pass smtp.mailfrom=company.example; dkim=pass header.d=company.example; dmarc=pass
+X-SOC-Sentinel-Label: SAFE
+
+Good morning,
+
+This week's training sessions are:
+
+Monday: Email header analysis
+Wednesday: Log triage basics
+Friday: Incident response tabletop
+
+The schedule and reading list are available here:
+https://learning.company.example/courses/soc-foundations/week-2
+
+Best,
+Learning Portal
+

@@ -1,0 +1,25 @@
+From: Status Updates <status@service.example>
+To: Operations Team <ops@company.example>
+Subject: Scheduled maintenance completed
+Date: Fri, 07 Aug 2026 18:20:00 +0000
+Message-ID: <maintenance-complete-005@service.example>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Authentication-Results: company.example; spf=pass smtp.mailfrom=service.example; dkim=pass header.d=service.example; dmarc=pass
+X-SOC-Sentinel-Label: SAFE
+
+Hello Operations Team,
+
+Scheduled maintenance for the monitoring service has completed successfully.
+
+Summary:
+- Maintenance window started at 17:00 UTC
+- Maintenance window ended at 18:10 UTC
+- No customer-impacting incidents were detected
+
+Status page:
+https://status.service.example/history/2026-08-07
+
+Regards,
+Status Updates
+

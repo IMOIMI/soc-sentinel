@@ -1,0 +1,38 @@
+From: Billing Desk <billing@vendor.example>
+To: Finance Team <finance@company.example>
+Subject: Invoice INV-2048 has been paid
+Date: Wed, 05 Aug 2026 11:05:00 +0000
+Message-ID: <invoice-paid-2048@vendor.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="safe-invoice-boundary"
+Authentication-Results: company.example; spf=pass smtp.mailfrom=vendor.example; dkim=pass header.d=vendor.example; dmarc=pass
+X-SOC-Sentinel-Label: SAFE
+
+--safe-invoice-boundary
+Content-Type: text/plain; charset="UTF-8"
+
+Hello Finance Team,
+
+Invoice INV-2048 has been marked as paid in the vendor portal.
+
+You can view the receipt in your account dashboard:
+https://billing.vendor.example/invoices/INV-2048
+
+Thank you,
+Billing Desk
+
+--safe-invoice-boundary
+Content-Type: text/html; charset="UTF-8"
+
+<!doctype html>
+<html>
+  <body>
+    <p>Hello Finance Team,</p>
+    <p>Invoice <strong>INV-2048</strong> has been marked as paid in the vendor portal.</p>
+    <p><a href="https://billing.vendor.example/invoices/INV-2048">View the receipt</a></p>
+    <p>Thank you,<br>Billing Desk</p>
+  </body>
+</html>
+
+--safe-invoice-boundary--
+
