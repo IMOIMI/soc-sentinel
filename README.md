@@ -14,7 +14,7 @@ Mini SOC Analyst Platform -- phishing detection, log analysis, and automated inc
 - `infra` - Docker and deployment configuration
 - `docs` - architecture notes and project documentation
 
-## Day 2: Phishing Engine Baseline
+## Phishing Engine Baseline
 
 The phishing engine analyzes `.eml` files and emits the shared `Alert` dataclass
 used by the rest of the platform. Each heuristic follows the same shape:
