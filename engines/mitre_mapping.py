@@ -8,9 +8,13 @@ MITRE_TECHNIQUES = {
     "phishing_attachment": "T1566.001",
     "valid_accounts": "T1078",
     "user_execution": "T1204",
+    "powershell": "T1059.001",
     "command_and_control": "T1102",
+    "ingress_tool_transfer": "T1105",
+    "account_discovery": "T1033",
     "suspicious_login": "T1078",
     "brute_force": "T1110",
+    "scheduled_task": "T1053.005",
     "exfiltration": "T1041",
 }
 
@@ -25,4 +29,3 @@ def techniques_for_signals(signals: list[str]) -> list[str]:
             techniques.append(technique)
 
     return techniques or ["N/A"]
-

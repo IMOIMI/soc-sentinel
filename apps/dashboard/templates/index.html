@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SOC-Sentinel Alert Queue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SOC-Sentinel</p>
+          <h1>Alert Queue</h1>
+        </div>
+        <div class="status-pill">Cached at startup</div>
+      </header>
+
+      <section class="metrics" aria-label="Dashboard metrics">
+        <div class="metric">
+          <span>Total Alerts</span>
+          <strong>{{ stats.total }}</strong>
+        </div>
+        <div class="metric critical">
+          <span>Critical</span>
+          <strong>{{ stats.critical }}</strong>
+        </div>
+        <div class="metric high">
+          <span>High</span>
+          <strong>{{ stats.high }}</strong>
+        </div>
+        <div class="metric">
+          <span>Log Engine</span>
+          <strong>{{ stats.log_alerts }}</strong>
+        </div>
+        <div class="metric">
+          <span>Phishing Engine</span>
+          <strong>{{ stats.phishing_alerts }}</strong>
+        </div>
+      </section>
+
+      <section class="queue">
+        <div class="queue-header">
+          <span>Severity</span>
+          <span>Score</span>
+          <span>Source</span>
+          <span>Alert</span>
+          <span>MITRE</span>
+        </div>
+        {% for alert in alerts %}
+          <a class="queue-row" href="{{ url_for('alert_detail', alert_id=alert.alert_id) }}">
+            <span class="severity severity-{{ alert.severity.value }}">{{ alert.severity.value }}</span>
+            <span class="score">{{ alert.score }}</span>
+            <span class="source">{{ alert.source.value.replace('_', ' ') }}</span>
+            <span>
+              <strong>{{ alert.title }}</strong>
+              <small>{{ alert.summary }}</small>
+            </span>
+            <span class="mitre">{{ ", ".join(alert.mitre_techniques) }}</span>
+          </a>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>
+

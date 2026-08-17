@@ -22,6 +22,8 @@ build/
 # Generated reports/logs
 data/reports/*
 !data/reports/.gitkeep
+!data/reports/*.md
+!data/reports/*.pdf
 logs/
 
 # OS/editor

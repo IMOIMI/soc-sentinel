@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ alert.title }} - SOC-Sentinel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <a class="back-link" href="{{ url_for('index') }}">Back to alert queue</a>
+
+      <header class="detail-header">
+        <p class="eyebrow">{{ alert.source.value.replace('_', ' ') }}</p>
+        <h1>{{ alert.title }}</h1>
+        <div class="detail-meta">
+          <span class="severity severity-{{ alert.severity.value }}">{{ alert.severity.value }}</span>
+          <span>Score {{ alert.score }}/100</span>
+          <span>{{ alert.created_at }}</span>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Summary</h2>
+        <p>{{ alert.summary }}</p>
+      </section>
+
+      <section class="grid two">
+        <div class="panel">
+          <h2>Evidence</h2>
+          {% for item in alert.evidence %}
+            <div class="evidence-item">
+              <strong>{{ item.name }}</strong>
+              <span>+{{ item.score }} · {{ item.location }}</span>
+              <p>{{ item.description }}</p>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="panel">
+          <h2>Recommended Actions</h2>
+          <ul>
+            {% for action in alert.recommended_actions %}
+              <li>{{ action }}</li>
+            {% endfor %}
+          </ul>
+          <h2>MITRE Techniques</h2>
+          <p class="mitre">{{ ", ".join(alert.mitre_techniques) }}</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Indicators</h2>
+        <div class="indicator-list">
+          {% for indicator in alert.indicators %}
+            <span class="indicator">{{ indicator.type }}: {{ indicator.value }}</span>
+          {% endfor %}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+

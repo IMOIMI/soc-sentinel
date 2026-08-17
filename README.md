@@ -60,3 +60,58 @@ Run the evaluation:
 python scripts/evaluate_phishing_engine.py
 ```
 
+## Log Analysis Engine
+
+The log engine uses schema-accurate synthetic Windows Security and Sysmon JSON
+events instead of binary `.evtx` parsing. This keeps the project lightweight
+while still modeling realistic SOC telemetry.
+
+Scenario covered:
+
+- Brute-force burst against `emmanuel`
+- Successful logon from the same source
+- Obfuscated PowerShell with decoded Mimikatz-style payload
+- Account discovery with `whoami`
+- C2 callback
+- Scheduled task persistence
+- Confirmed payload execution
+- Three benign events as noise
+
+Current result:
+
+- 15 raw events
+- 3 correlated alerts
+- 0 false positives on the benign events
+
+Run the log engine through the test suite:
+
+```bash
+python -m unittest discover -s tests
+```
+
+## SIEM Dashboard
+
+The Flask dashboard loads phishing and log alerts once at startup, then serves a
+stable alert queue and detail pages.
+
+![SOC-Sentinel dashboard](docs/assets/dashboard.jpg)
+
+```bash
+python apps/dashboard/app.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5001
+```
+
+## Incident Reports
+
+Markdown and PDF incident response reports are generated for the showcase log
+alerts in `data/reports`.
+
+```bash
+python scripts/generate_incident_reports.py
+```
+
