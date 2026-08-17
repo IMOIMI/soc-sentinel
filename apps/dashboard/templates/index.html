@@ -13,7 +13,10 @@
           <p class="eyebrow">SOC-Sentinel</p>
           <h1>Alert Queue</h1>
         </div>
-        <div class="status-pill">Cached at startup</div>
+        <nav class="top-actions">
+          <a class="button-link" href="{{ url_for('analyze') }}">Live Analyzer</a>
+          <div class="status-pill">Cached at startup</div>
+        </nav>
       </header>
 
       <section class="metrics" aria-label="Dashboard metrics">
@@ -63,4 +66,3 @@
     </main>
   </body>
 </html>
-

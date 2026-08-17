@@ -106,6 +106,16 @@ Then open:
 http://127.0.0.1:5001
 ```
 
+Live email analyzer:
+
+```text
+http://127.0.0.1:5001/analyze
+```
+
+Use it to paste raw email content or upload a `.eml` file. Results use the same
+phishing engine as the sample dataset and are appended to the dashboard queue for
+the current app session.
+
 ## Incident Reports
 
 Markdown and PDF incident response reports are generated for the showcase log

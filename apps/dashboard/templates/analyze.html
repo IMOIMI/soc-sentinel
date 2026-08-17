@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Live Email Analyzer - SOC-Sentinel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="page-nav">
+        <a class="back-link" href="{{ url_for('index') }}">Back to alert queue</a>
+      </nav>
+
+      <header class="detail-header">
+        <p class="eyebrow">SOC-Sentinel</p>
+        <h1>Live Email Analyzer</h1>
+        <p class="lede">Paste raw email headers/body or upload a `.eml` file to score it with the phishing engine.</p>
+      </header>
+
+      <section class="panel">
+        <form class="analyze-form" method="post" enctype="multipart/form-data">
+          <label for="raw_email">Raw email content</label>
+          <textarea id="raw_email" name="raw_email" rows="14" placeholder="From: PayPal Security &lt;security@paypa1.example&gt;&#10;Subject: Verify your account immediately&#10;&#10;..."></textarea>
+
+          <div class="form-row">
+            <div>
+              <label for="email_file">Or upload .eml</label>
+              <input id="email_file" name="email_file" type="file" accept=".eml,message/rfc822">
+            </div>
+            <button type="submit">Analyze Email</button>
+          </div>
+        </form>
+        {% if error %}
+          <p class="form-error">{{ error }}</p>
+        {% endif %}
+      </section>
+
+      {% if result %}
+        <section class="panel result-panel">
+          <div class="result-heading">
+            <div>
+              <p class="eyebrow">Verdict</p>
+              <h2>{{ result.title }}</h2>
+            </div>
+            <span class="severity severity-{{ result.severity.value }}">{{ result.severity.value }}</span>
+          </div>
+          <p>{{ result.summary }}</p>
+          <p class="score-line">Score {{ result.score }}/100 · MITRE {{ ", ".join(result.mitre_techniques) }}</p>
+          <a class="button-link" href="{{ url_for('alert_detail', alert_id=result.alert_id) }}">Open full alert</a>
+        </section>
+
+        <section class="grid two">
+          <div class="panel">
+            <h2>Evidence</h2>
+            {% for item in result.evidence %}
+              <div class="evidence-item">
+                <strong>{{ item.name }}</strong>
+                <span>+{{ item.score }} · {{ item.location }}</span>
+                <p>{{ item.description }}</p>
+              </div>
+            {% endfor %}
+            {% if not result.evidence %}
+              <p>No suspicious heuristic evidence was triggered.</p>
+            {% endif %}
+          </div>
+          <div class="panel">
+            <h2>Indicators</h2>
+            <div class="indicator-list">
+              {% for indicator in result.indicators %}
+                <span class="indicator">{{ indicator.type }}: {{ indicator.value }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+      {% endif %}
+    </main>
+  </body>
+</html>

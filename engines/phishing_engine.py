@@ -131,7 +131,19 @@ def analyze_email(path: str | Path) -> Alert:
     """Analyze one `.eml` file and return the shared Alert contract."""
 
     email_path = Path(path)
-    message = BytesParser(policy=policy.default).parsebytes(email_path.read_bytes())
+    return analyze_email_content(email_path.read_bytes(), label=str(email_path))
+
+
+def analyze_email_content(raw_bytes: bytes, label: str = "live-email.eml") -> Alert:
+    """Analyze raw `.eml` bytes from a pasted message or uploaded file."""
+
+    message = BytesParser(policy=policy.default).parsebytes(raw_bytes)
+    return _score_message(message, label)
+
+
+def _score_message(message: Message | EmailMessage, label: str) -> Alert:
+    """Score an already-parsed email message and return the shared Alert contract."""
+
     parsed = _ParsedEmail.from_message(message)
 
     heuristic_results = [
@@ -164,7 +176,7 @@ def analyze_email(path: str | Path) -> Alert:
 
     return Alert(
         source=AlertSource.PHISHING_EMAIL,
-        title=f"{classification}: {parsed.subject or email_path.name}",
+        title=f"{classification}: {parsed.subject or label}",
         severity=severity,
         score=score,
         summary=_summary_for(classification, score, triggered),
@@ -174,7 +186,7 @@ def analyze_email(path: str | Path) -> Alert:
         evidence=evidence,
         raw_event={
             "classification": classification,
-            "path": str(email_path),
+            "path": label,
             "subject": parsed.subject,
             "from": parsed.from_header,
             "return_path": parsed.return_path,

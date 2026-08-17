@@ -5,7 +5,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from flask import Flask, abort, jsonify, render_template
+from flask import Flask, abort, jsonify, redirect, render_template, request, url_for
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 
 from engines.alert_schema import Alert
 from engines.log_engine import analyze_log_file
-from engines.phishing_engine import analyze_email
+from engines.phishing_engine import analyze_email, analyze_email_content
 
 
 PHISHING_DIR = ROOT / "data" / "samples" / "phishing"
@@ -37,6 +37,13 @@ ALERT_CACHE = load_alert_cache()
 ALERT_INDEX = {alert.alert_id: alert for alert in ALERT_CACHE}
 
 
+def append_alert(alert: Alert) -> None:
+    """Append a live analyzer result to the in-memory dashboard queue."""
+
+    ALERT_CACHE.insert(0, alert)
+    ALERT_INDEX[alert.alert_id] = alert
+
+
 def create_app() -> Flask:
     app = Flask(__name__, template_folder="templates", static_folder="static")
 
@@ -52,6 +59,31 @@ def create_app() -> Flask:
             ),
         }
         return render_template("index.html", alerts=ALERT_CACHE, stats=stats)
+
+    @app.route("/analyze", methods=["GET", "POST"])
+    def analyze():
+        result = None
+        error = None
+
+        if request.method == "POST":
+            uploaded = request.files.get("email_file")
+            raw_text = request.form.get("raw_email", "")
+            raw_bytes = b""
+            label = "pasted-email.eml"
+
+            if uploaded and uploaded.filename:
+                raw_bytes = uploaded.read()
+                label = uploaded.filename
+            elif raw_text.strip():
+                raw_bytes = raw_text.encode("utf-8")
+
+            if not raw_bytes.strip():
+                error = "Paste raw email content or upload a .eml file."
+            else:
+                result = analyze_email_content(raw_bytes, label=label)
+                append_alert(result)
+
+        return render_template("analyze.html", result=result, error=error)
 
     @app.get("/alerts/<alert_id>")
     def alert_detail(alert_id: str):
@@ -79,4 +111,3 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
-

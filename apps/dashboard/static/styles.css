@@ -77,6 +77,38 @@ h2 {
   white-space: nowrap;
 }
 
+.top-actions,
+.page-nav,
+.form-row,
+.result-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.button-link,
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  border: 1px solid var(--low);
+  border-radius: 6px;
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--text);
+  padding: 0 14px;
+  font: inherit;
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button-link:hover,
+button:hover {
+  background: rgba(88, 166, 255, 0.18);
+}
+
 .metrics {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -180,8 +212,17 @@ h2 {
 .back-link {
   display: inline-block;
   color: var(--low);
-  margin-bottom: 24px;
   text-decoration: none;
+}
+
+.page-nav {
+  margin-bottom: 24px;
+}
+
+.lede {
+  color: var(--muted);
+  max-width: 720px;
+  line-height: 1.6;
 }
 
 .detail-meta {
@@ -226,10 +267,64 @@ h2 {
   gap: 8px;
 }
 
+.analyze-form {
+  display: grid;
+  gap: 14px;
+}
+
+.analyze-form label {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+textarea,
+input[type="file"] {
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: #0b1017;
+  color: var(--text);
+  padding: 12px;
+  font: 14px/1.5 Consolas, Monaco, monospace;
+}
+
+textarea:focus,
+input[type="file"]:focus {
+  border-color: var(--low);
+  outline: none;
+}
+
+.form-error {
+  color: var(--critical);
+}
+
+.result-panel h2 {
+  margin: 0;
+  color: var(--text);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 24px;
+}
+
+.score-line {
+  color: var(--muted);
+}
+
 @media (max-width: 860px) {
   .metrics,
   .grid.two {
     grid-template-columns: 1fr;
+  }
+
+  .topbar,
+  .top-actions,
+  .page-nav,
+  .form-row,
+  .result-heading {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .queue-header {
@@ -241,4 +336,3 @@ h2 {
     gap: 9px;
   }
 }
-
