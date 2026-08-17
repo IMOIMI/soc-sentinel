@@ -1,4 +1,4 @@
 # Web
 
-Analyst dashboard frontend for SOC-Sentinel.
+Analyst dashboard frontend for soc-Analyser.
 

@@ -6,7 +6,7 @@ Message-ID: <maintenance-complete-005@service.example>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Authentication-Results: company.example; spf=pass smtp.mailfrom=service.example; dkim=pass header.d=service.example; dmarc=pass
-X-SOC-Sentinel-Label: SAFE
+X-soc-Analyser-Label: SAFE
 
 Hello Operations Team,
 

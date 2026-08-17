@@ -1,2 +1,2 @@
-"""SOC-Sentinel test suite."""
+"""soc-Analyser test suite."""
 

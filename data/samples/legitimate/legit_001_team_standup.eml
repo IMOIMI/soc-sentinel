@@ -6,7 +6,7 @@ Message-ID: <standup-001@team.example.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Authentication-Results: company.example; spf=pass smtp.mailfrom=team.example.com; dkim=pass header.d=team.example.com; dmarc=pass
-X-SOC-Sentinel-Label: SAFE
+X-soc-Analyser-Label: SAFE
 
 Hi team,
 
@@ -18,7 +18,7 @@ Completed:
 - Confirmed the Day 2 phishing parser tasks
 
 Next meeting notes will be stored in the internal project workspace:
-https://team.example.com/projects/soc-sentinel/standups
+https://team.example.com/projects/soc-Analyser/standups
 
 Thanks,
 Product Team

@@ -1,4 +1,4 @@
-"""Shared alert schema for all SOC-Sentinel detection engines.
+"""Shared alert schema for all soc-Analyser detection engines.
 
 Both phishing and log-analysis engines should return Alert objects so the API,
 dashboard, reports, and incident response playbooks can consume one stable
@@ -61,7 +61,7 @@ class Evidence:
 
 @dataclass
 class Alert:
-    """Canonical alert object emitted by every SOC-Sentinel engine."""
+    """Canonical alert object emitted by every soc-Analyser engine."""
 
     source: AlertSource
     title: str

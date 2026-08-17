@@ -1,2 +1,2 @@
-"""Detection engines and shared output contracts for SOC-Sentinel."""
+"""Detection engines and shared output contracts for soc-Analyser."""
 

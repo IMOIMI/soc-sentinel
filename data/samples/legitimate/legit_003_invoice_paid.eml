@@ -6,7 +6,7 @@ Message-ID: <invoice-paid-2048@vendor.example>
 MIME-Version: 1.0
 Content-Type: multipart/alternative; boundary="safe-invoice-boundary"
 Authentication-Results: company.example; spf=pass smtp.mailfrom=vendor.example; dkim=pass header.d=vendor.example; dmarc=pass
-X-SOC-Sentinel-Label: SAFE
+X-soc-Analyser-Label: SAFE
 
 --safe-invoice-boundary
 Content-Type: text/plain; charset="UTF-8"

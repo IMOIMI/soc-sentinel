@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Placeholder
-        run: echo "SOC-Sentinel CI scaffold"
+        run: echo "soc-Analyser CI scaffold"
 

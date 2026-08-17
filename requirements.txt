@@ -1,4 +1,4 @@
-# SOC-Sentinel keeps dependencies intentional and lean.
+# soc-Analyser keeps dependencies intentional and lean.
 # Standard-library modules handle .eml parsing, JSON log analysis,
 # hashing, timelines, and heuristic correlation wherever possible.
 

@@ -1,4 +1,4 @@
-"""SOC-Sentinel Flask dashboard."""
+"""soc-Analyser Flask dashboard."""
 
 from __future__ import annotations
 

@@ -1,2 +1,2 @@
-"""Forensics helpers for SOC-Sentinel incident response output."""
+"""Forensics helpers for soc-Analyser incident response output."""
 

@@ -1,4 +1,4 @@
 # API
 
-Backend service for SOC-Sentinel.
+Backend service for soc-Analyser.
 

@@ -1,2 +1,2 @@
-"""SOC-Sentinel API package."""
+"""soc-Analyser API package."""
 

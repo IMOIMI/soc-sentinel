@@ -1,4 +1,4 @@
-# SOC-Sentinel
+# soc-Analyser
 
 Mini SOC Analyst Platform -- phishing detection, log analysis, and automated incident response.
 
@@ -94,7 +94,7 @@ python -m unittest discover -s tests
 The Flask dashboard loads phishing and log alerts once at startup, then serves a
 stable alert queue and detail pages.
 
-![SOC-Sentinel dashboard](docs/assets/dashboard.jpg)
+![soc-Analyser dashboard](docs/assets/dashboard.jpg)
 
 ```bash
 python apps/dashboard/app.py

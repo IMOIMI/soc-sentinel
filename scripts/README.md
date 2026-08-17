@@ -1,4 +1,4 @@
 # Scripts
 
-Developer and maintenance scripts for SOC-Sentinel.
+Developer and maintenance scripts for soc-Analyser.
 

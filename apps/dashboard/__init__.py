@@ -1,2 +1,2 @@
-"""Flask SIEM dashboard for SOC-Sentinel."""
+"""Flask SIEM dashboard for soc-Analyser."""
 
